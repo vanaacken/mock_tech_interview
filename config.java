@@ -21,13 +21,18 @@ public class config {
 	}
 	
 	public void parseCoordinates(int grid[]){
-		System.out.println("length: "+ _coordinates_string.length());
 		for(int i = 0; i < _coordinates_string.length(); i++)
 		{
 			int start = _coordinates_string.indexOf('<', i);
 			int end = _coordinates_string.indexOf('>', start);
 			if (start < 0 || end < 0){
 				break;
+			}
+			if (_coordinates_string.indexOf(',', end) != end + 1
+				&& _coordinates_string.indexOf(']', end) != end + 1)
+			{
+				System.out.println("Configuration error: missing ',' between coordinates");
+				System.exit(1);
 			}
 			String sub = _coordinates_string.substring(start + 1, end);
 			String split[] = sub.split(",");
@@ -43,6 +48,9 @@ public class config {
 	}
 	public int getSquared(){
 		return _squared;
+	}
+	public int getRounds(){
+		return _rounds;
 	}
 
 

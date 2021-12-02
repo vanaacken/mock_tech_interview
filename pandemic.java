@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 /* TODO
 ** Parser
 ** Loop
@@ -6,6 +7,8 @@ import java.util.Arrays;
 ** Output per iteration
 */
 public class pandemic{
+	enum status{UNINFECTED, INFECTED, NEW_INFECTED, RECOVERED};
+
 	public static void main(String[] args){
 		if (args.length != 5)
 		{
@@ -22,8 +25,10 @@ public class pandemic{
 			System.exit(1);
 		}
 		new printGrid(grid, conf);
-		for(int i = 0; i < 40; i++)
+		// Scanner scanner = new Scanner(System.in);
+		for(int i = 0; i < conf.getRounds(); i++)
 		{
+			// String s = scanner.nextLine();
 			new infected(grid, conf);
 			new printGrid(grid, conf);
 		}

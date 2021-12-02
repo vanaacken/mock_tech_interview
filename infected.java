@@ -1,6 +1,8 @@
 public class infected {
 	int _size;
 	int _squared;
+	int _infected_neighbours;
+
 	public infected(int grid[], config conf){
 		_size = conf.getSize();
 		_squared = conf.getSquared();
@@ -15,56 +17,68 @@ public class infected {
 		}
 		// count neighbours and give newly affected or recovered status
 		for(int i = 0; i < _squared; i++){
-			if (grid[i] == 0 && top(grid, i) + side(grid, i) + bot(grid, i) > conf._infection_threshold){
+			_infected_neighbours = 0;
+			_infected_neighbours += top(grid, i) + side(grid, i) + bot(grid, i);
+			if (grid[i] == 0 && _infected_neighbours > conf._infection_threshold){
 				grid[i] = 2;
 			}
-			else if(grid[i] == 1 && top(grid, i) + side(grid, i) + bot(grid, i) > conf._recovery_threshold){
+			else if(grid[i] == 1 && _infected_neighbours > conf._recovery_threshold){
 				grid[i] = 3;
 			}
+			// if (i == 72)
+			// {
+			// 	System.out.println("index 72 has neighbours : " + _infected_neighbours + " and value : " + grid[i]);
+			// 	System.out.println("top:" + top(grid, i));
+			// 	System.out.println("bot:" + bot(grid, i));
+			// 	System.out.println("side:" + top(grid, i));
+			// }
 		}
 	}
 	public int top(int grid[], int i){
-		int infected_neighbours = 0;
+		int n = 0;
 		if (i < _size){
 			return (0);
 		}
 		if (i % _size > 0 && grid[i - (_size + 1)] == 1){
-			infected_neighbours++;
+			n++;
 		}
-		if (i % _size < 9 && grid[i - (_size - 1)] == 1){
-			infected_neighbours++;
+		if (i % _size < _size - 1 && grid[i - (_size - 1)] == 1){
+			n++;
 		}
 		if (grid[i - _size] == 1){
-			infected_neighbours++;
+			n++;
 		}
-		return (infected_neighbours);
+		return (n);
 	}
 
 	public int side(int grid[], int i){
-		int infected_neighbours = 0;
+		int n = 0;
 		if (i % _size > 0 && grid[i - 1] == 1)
 		{
-			infected_neighbours++;
+			n++;
 		}
-		if (i % _size < 9 && grid[i + 1] == 1)
+		if (i % _size < _size - 1 && grid[i + 1] == 1)
 		{
-			infected_neighbours++;
+			n++;
 		}
-		return (infected_neighbours);
+		return (n);
 	}
 
 	public int bot(int grid[], int i){
-		int infected_neighbours = 0;
+		int n = 0;
 		if (i >= _squared - _size){
 			return (0);
 		}
 		if (i % _size > 0 && grid[i + (_size - 1)] == 1){
-			infected_neighbours++;
+			n++;
 		}
-		if (i % _size < 9 && grid[i + (_size + 1)] == 1){
-			infected_neighbours++;
+		if (i % _size < _size -1 && grid[i + (_size + 1)] == 1){
+			n++;
 		}
-		infected_neighbours += grid[i + _size];
-		return (infected_neighbours);
+		if (grid[i + _size] == 1)
+		{
+			n++;
+		}
+		return (n);
 	}
 }
