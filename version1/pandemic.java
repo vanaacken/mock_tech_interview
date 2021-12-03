@@ -1,3 +1,4 @@
+package version1;
 import java.util.Arrays;
 import java.util.Scanner;
 /* TODO
@@ -7,7 +8,6 @@ import java.util.Scanner;
 ** Output per iteration
 */
 public class pandemic{
-	enum status{UNINFECTED, INFECTED, NEW_INFECTED, RECOVERED};
 
 	public static void main(String[] args){
 		if (args.length != 5)

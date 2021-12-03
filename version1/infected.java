@@ -1,3 +1,4 @@
+package version1;
 public class infected {
 	int _size;
 	int _squared;

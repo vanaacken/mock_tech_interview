@@ -1,3 +1,4 @@
+package version1;
 public class printGrid {
 	public static final String ANSI_RESET = "\u001B[0m";
 	public static final String ANSI_BLACK = "\u001B[30m";
@@ -22,23 +23,26 @@ public class printGrid {
 		System.out.flush(); 
 		String output = "";
 		for(int i = 1; i <= conf.getSquared(); i++){
-			if (grid[i - 1] == 1){
-				output += ANSI_RED + ANSI_RED_BACKGROUND + grid[i-1];
+			switch(grid[i - 1]){
+				case 0:
+					output += ANSI_WHITE + ANSI_WHITE_BACKGROUND + grid[i-1];
+					break;
+				case 1:
+					output += ANSI_RED + ANSI_RED_BACKGROUND + grid[i-1];
+					break;
+				case 2:
+					output += ANSI_BLACK + ANSI_BLACK_BACKGROUND + grid[i-1];
+					break;
+				case 3:
+					output += ANSI_GREEN + ANSI_GREEN_BACKGROUND + grid[i-1];
+					break;
 			}
-			else if (grid[i - 1] == 2){
-				output += ANSI_BLACK + ANSI_BLACK_BACKGROUND + grid[i-1];
-			}
-			else if (grid[i - 1] == 3){
-				output += ANSI_GREEN + ANSI_GREEN_BACKGROUND + grid[i-1];
-			}
-			else{
-				output += ANSI_WHITE + ANSI_WHITE_BACKGROUND + grid[i-1];				
-			}
-			if (i % conf._size == 0){
-				output +=  ANSI_RESET + "\n";
-			}
-			else{
-				output += " ";
+			switch(i % conf._size){
+				case 0:
+					output +=  ANSI_RESET + '\n';
+					break;
+				default:
+					output += ' ';		
 			}
 		}
 		System.out.print(output);
