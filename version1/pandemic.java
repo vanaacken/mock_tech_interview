@@ -1,4 +1,3 @@
-package version1;
 import java.util.Arrays;
 import java.util.Scanner;
 /* TODO
@@ -10,6 +9,7 @@ import java.util.Scanner;
 public class pandemic{
 
 	public static void main(String[] args){
+		long startTime = System.nanoTime();
 		if (args.length != 5)
 		{
 			System.out.println("Invalid Configuration");
@@ -24,13 +24,16 @@ public class pandemic{
 			System.out.println("Parsing Error: " + e);
 			System.exit(1);
 		}
-		new printGrid(grid, conf);
+		// new printGrid(grid, conf);
 		// Scanner scanner = new Scanner(System.in);
 		for(int i = 0; i < conf.getRounds(); i++)
 		{
 			// String s = scanner.nextLine();
 			new infected(grid, conf);
-			new printGrid(grid, conf);
 		}
+		new printGrid(grid, conf);
+		long endTime   = System.nanoTime();
+		long totalTime = endTime - startTime;
+		System.out.println(totalTime/1000000);
 	}
 }

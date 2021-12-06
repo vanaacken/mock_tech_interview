@@ -21,25 +21,30 @@ public class config {
 	}
 	
 	public void parseCoordinates(int grid[][]){
-		for(int i = 0; i < _coordinates_string.length(); i++)
-		{
-			int start = _coordinates_string.indexOf('<', i);
-			int end = _coordinates_string.indexOf('>', start);
-			if (start < 0 || end < 0){
-				break;
-			}
-			if (_coordinates_string.indexOf(',', end) != end + 1
-				&& _coordinates_string.indexOf(']', end) != end + 1)
+		try {
+			for(int i = 0; i < _coordinates_string.length(); i++)
 			{
-				System.out.println("Configuration error: missing ',' between coordinates");
-				System.exit(1);
+				int start = _coordinates_string.indexOf('<', i);
+				int end = _coordinates_string.indexOf('>', start);
+				if (start < 0 || end < 0){
+					break;
+				}
+				if (_coordinates_string.indexOf(',', end) != end + 1
+					&& _coordinates_string.indexOf(']', end) != end + 1)
+				{
+					System.out.println("Configuration error: missing ',' between coordinates");
+					System.exit(1);
+				}
+				String sub = _coordinates_string.substring(start + 1, end);
+				String split[] = sub.split(",");
+				int x = Integer.parseInt(split[0]);
+				int y = Integer.parseInt(split[1]);
+				grid[y-1][x-1] = 1;
+				i += end - start;
 			}
-			String sub = _coordinates_string.substring(start + 1, end);
-			String split[] = sub.split(",");
-			int x = Integer.parseInt(split[0]);
-			int y = Integer.parseInt(split[1]);
-			grid[y-1][x-1] = 1;
-			i += end - start;
+		} catch (Exception e) {
+			System.out.println("Parsing Error: " + e);
+			System.exit(1);
 		}
 	}
 	// GETTERS

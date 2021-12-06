@@ -1,4 +1,3 @@
-package version1;
 public class infected {
 	int _size;
 	int _squared;
@@ -26,13 +25,6 @@ public class infected {
 			else if(grid[i] == 1 && _infected_neighbours > conf._recovery_threshold){
 				grid[i] = 3;
 			}
-			// if (i == 72)
-			// {
-			// 	System.out.println("index 72 has neighbours : " + _infected_neighbours + " and value : " + grid[i]);
-			// 	System.out.println("top:" + top(grid, i));
-			// 	System.out.println("bot:" + bot(grid, i));
-			// 	System.out.println("side:" + top(grid, i));
-			// }
 		}
 	}
 	public int top(int grid[], int i){

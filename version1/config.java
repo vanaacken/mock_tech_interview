@@ -1,4 +1,3 @@
-package version1;
 public class config {
 	int _size;
 	int _squared;

@@ -1,4 +1,3 @@
-package version1;
 public class printGrid {
 	public static final String ANSI_RESET = "\u001B[0m";
 	public static final String ANSI_BLACK = "\u001B[30m";
@@ -39,7 +38,7 @@ public class printGrid {
 			}
 			switch(i % conf._size){
 				case 0:
-					output +=  ANSI_RESET + '\n';
+					output += ' ' + ANSI_RESET + '\n';
 					break;
 				default:
 					output += ' ';		
