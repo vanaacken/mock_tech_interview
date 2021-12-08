@@ -1,10 +1,11 @@
 public class config {
-	int _size;
-	int _squared;
-	int _rounds;
-	int _infection_threshold;
-	int _recovery_threshold;
-	String _coordinates_string;
+	public int _size;
+	public int _squared;
+	public int _rounds;
+	public int _infection_threshold;
+	public int _recovery_threshold;
+	public String _coordinates_string;
+	public boolean _verbose;
 
 	public config(String[] args){
 		try {
@@ -13,6 +14,12 @@ public class config {
 			_rounds = Integer.parseInt(args[1]);
 			_infection_threshold = Integer.parseInt(args[2]);
 			_recovery_threshold = Integer.parseInt(args[3]);
+			if (args.length == 6 && args[5].equals("-v")){
+				_verbose = true;
+			}
+			else{
+				_verbose = false;
+			}
 		} catch (Exception e) {
 			System.out.println("Configuration error: " + e);
 			System.exit(1);
@@ -47,7 +54,7 @@ public class config {
 			System.exit(1);
 		}
 	}
-	// GETTERS
+
 	public int getSize(){
 		return _size;
 	}
@@ -56,17 +63,5 @@ public class config {
 	}
 	public int getRounds(){
 		return _rounds;
-	}
-
-
-
-	// DEBUG
-	public void print(){
-		System.out.println("size        : " + _size);
-		System.out.println("squared     : " + _squared);
-		System.out.println("rounds      : " + _rounds);
-		System.out.println("infection   : " + _infection_threshold);
-		System.out.println("recovery    : " + _recovery_threshold);
-		System.out.println("coordinates : " + _coordinates_string);
 	}
 }

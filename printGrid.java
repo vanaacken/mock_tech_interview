@@ -45,10 +45,10 @@ public class printGrid {
 			output += ANSI_RED + ANSI_RED_BACKGROUND + grid[i-1][j-1];
 			break;
 			case 2:
-			output += ANSI_BLACK + ANSI_BLACK_BACKGROUND + grid[i-1][j-1];
+			output += ANSI_RED + ANSI_RED_BACKGROUND + grid[i-1][j-1];
 			break;
 			case 3:
-			output += ANSI_GREEN + ANSI_GREEN_BACKGROUND + grid[i-1][j-1];
+			output += ANSI_WHITE + ANSI_WHITE_BACKGROUND + grid[i-1][j-1];
 			break;
 		}
 		printSpaceNewline(j, conf);
