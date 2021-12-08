@@ -5,7 +5,7 @@ public class infection {
 	static int grid[][];
 	config conf;
 	public infection(int g[][], config c){
-		grid = g;
+		grid = g;x
 		conf = c;
 		_size = conf.getSize();
 		_squared = conf.getSquared();

@@ -1,3 +1,7 @@
+import java.util.Set;
+import java.util.ArrayList;
+
+
 public class config {
 	int _size;
 	int _squared;
@@ -5,6 +9,7 @@ public class config {
 	int _infection_threshold;
 	int _recovery_threshold;
 	String _coordinates_string;
+	ArrayList<point> points;
 
 	public config(String[] args){
 		try {
@@ -13,14 +18,16 @@ public class config {
 			_rounds = Integer.parseInt(args[1]);
 			_infection_threshold = Integer.parseInt(args[2]);
 			_recovery_threshold = Integer.parseInt(args[3]);
+			points = new ArrayList<point>();
 		} catch (Exception e) {
 			System.out.println("Configuration error: " + e);
 			System.exit(1);
 		}
 		_coordinates_string = args[4];
+		parseCoordinates();
 	}
 	
-	public void parseCoordinates(int grid[][]){
+	public void parseCoordinates(){
 		try {
 			for(int i = 0; i < _coordinates_string.length(); i++)
 			{
@@ -39,7 +46,12 @@ public class config {
 				String split[] = sub.split(",");
 				int x = Integer.parseInt(split[0]);
 				int y = Integer.parseInt(split[1]);
-				grid[y-1][x-1] = 1;
+				if (x < 0 || x > _size || y < 0 || y > _size){
+					System.out.println("Configuration error: invalid coordinates");
+					System.exit(1);
+				}
+				point coordinate = new point(x, y);
+				points.add(coordinate);
 				i += end - start;
 			}
 		} catch (Exception e) {

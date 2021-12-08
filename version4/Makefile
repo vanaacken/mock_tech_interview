@@ -8,7 +8,6 @@ CLASSES = \
 		config.java \
 		infection.java \
 		pandemic.java \
-		printGrid.java 
 
 default: classes
 
